@@ -1,0 +1,4 @@
+
+# Remove virtual environment from github
+.env/
+env/

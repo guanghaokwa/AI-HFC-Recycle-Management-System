@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div>
+    <form method="POST">
+        <label>Username:</label>
+        <input type="text" name="username" id="username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" id="password" required/>
+
+        <label>Confirm Password:</label>
+        <input type="password" name="re_password" id="re_password" required/>
+
+        <input type="submit" value="Sign Up" />
+    </form>
+
+    <ul>
+        {% for status in status_list %}
+        <li>{{status}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
