@@ -10,6 +10,46 @@ app.secret_key = SECRET_KEY
 def index():
     return render_template('index.html')
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if 'username' in session:
+        return redirect('/dashboard')
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = get_connection()
+        curs = conn.cursor()
+
+        sql_query = "SELECT password FROM account WHERE username = %s"
+        curs.execute(sql_query, (username,))
+
+        stored_hash_pw = curs.fetchone()
+
+        if stored_hash_pw:
+            # Convert database password from hex to bytes
+            stored_hash_pw = bytes.fromhex(stored_hash_pw[0])
+
+            # To compare password if matches
+            if bcrypt.checkpw(password.encode('utf-8'), stored_hash_pw):
+                session['username'] = username
+                
+                username = session['username']
+
+                curs.close()
+                conn.close()
+                
+                return render_template('dashboard.html', username=username)
+            else:
+                status = 'Password Incorrect'
+                return render_template("login.html", status=status)
+        else:
+            status = 'Username not found'
+            return render_template("login.html", status=status)
+        
+    return render_template('login.html')
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if 'username' in session:

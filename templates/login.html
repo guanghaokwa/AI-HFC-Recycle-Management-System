@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    <form method="POST">
+        <input type="text" name="username" id="username" required/>
+        <input type="password" name="password" id="password" required/>
+
+        <input type="submit" value="Login" />
+    </form>
+
+    <p>{{ status }}</p>
+
+    <a href="/signup" onclick="signup_click()" id="signup">Sign Up</a>
+{% endblock %}
