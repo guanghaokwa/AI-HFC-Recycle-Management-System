@@ -1,12 +1,33 @@
-import psycopg2
 from config import DB_PARAMS
-from flask import request
+import psycopg2
+import qrcode
+import bcrypt
+import os
+import random # To replace once correct object type detected from LabelImg
+from flask import Flask, render_template, request, redirect, send_file, session, Response
+from config import SECRET_KEY
+from PIL import Image
+from pyngrok import ngrok
+import requests
+import cv2
+import io
+from werkzeug.datastructures import FileStorage
+import json
+import time
 
 cat_type_list = ['Metal', 'Plastic', 'Paper'] # Different category type available when user sign up account
 
 HISTORY_INFO_MAX_DISPLAY = 4 # Max No of Most Recent History Info to display in Dashboard
 
 POINT_TO_ADD = 1 # UPDATE field for point to add if user interact wih QR code
+
+def send_image_to_colab(file):
+    # Replace with the actual public URL from Colab
+    colab_url = "https://b482-104-196-70-150.ngrok-free.app/predict"  # Replace with the actual Ngrok URL from Colab
+    files = {'file': file}
+    response = requests.post(colab_url, files=files)
+    return response
+
 
 def get_connection():
     conn = psycopg2.connect(**DB_PARAMS)
