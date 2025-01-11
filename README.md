@@ -6,7 +6,7 @@ Singapore's domestic recycling rate has remained low, largely due to incorrect r
 
 Our Waste Classification System uses image processing to analyze photos of waste and classify items as recyclable or non-recyclable. By providing accurate classification, the system reduces contamination in recyclables, ensuring that more materials are effectively recycled. This directly supports the Zero Waste Masterplan’s objective of achieving a 30% domestic recycling rate by 2030.
 
-The system is enhanced by an AI-Powered Assistant, which provides real-time guidance and education on proper recycling practices. Users can upload images of waste to receive feedback and disposal instructions. This promotes awareness and fosters a culture of recycling, aligning with the Green Plan's goal of instilling sustainability habits among citizens.
+The system is enhanced by an AI-Powered Assistant, which allows users to ask about recyclable items and learn how to dispose of waste correctly. By providing accessible guidance, the assistant promotes awareness of recycling practices and highlights how individual recycling efforts contribute to Singapore's sustainability goals, aligning with the Green Plan's vision of fostering eco-conscious habits among citizens.
 
 To encourage widespread participation, the project incorporates a Gamification System, rewarding users for correct recycling practices. This incentive-driven approach motivates long-term behavior change and helps build a community committed to responsible waste management.
 
@@ -33,9 +33,7 @@ venv\Scripts\Activate
 pip install -r requirements.txt
 ```
 
-4. Access the Google Colab file 
-
-[Open in Google Colab](https://colab.research.google.com/drive/1abc2d34efgh5678)
+4. Access the Google Colab file  [Open in Google Colab](https://colab.research.google.com/drive/1abc2d34efgh5678)
 
 5. Add "best.pt" file into "content" folder for runtime
 
@@ -59,25 +57,25 @@ python main.py
 
 <div style="display: flex; justify-content: start; align-items: center; margin-bottom: 10px;">
   <div style="display: flex; align-items: center; margin-right: 20px;">
-    <img src="https://example.com/profile-image.jpg" alt="Contributor 1" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
-    <a href="https://www.linkedin.com/in/contributor1" target="_blank" style="font-weight: bold;">Contributor 1</a>
+    <img src="https://media.licdn.com/dms/image/v2/C5603AQHv2AmaxZ-KJw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1604580823762?e=1741824000&v=beta&t=mtcJvCBRKRusRDdjavKW7LWKfwkppsMZ6rjgF7CKTi0" alt="Contributor 1" style="width: 150px; height: 150px; border-radius: 50%; margin-right: 10px;">
+    <a href="https://www.linkedin.com/in/kwa-guang-hao-98213y/" target="_blank" style="font-weight: bold;">Kwa Guang Hao</a>
   </div>
 
   <div style="display: flex; align-items: center; margin-right: 20px;">
-    <img src="https://example.com/profile-image2.jpg" alt="Contributor 2" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
-    <a href="https://www.linkedin.com/in/contributor2" target="_blank" style="font-weight: bold;">Contributor 2</a>
-  </div>
-</div>
-
-  <div style="display: flex; align-items: center; margin-right: 20px;">
-    <img src="https://example.com/profile-image2.jpg" alt="Contributor 2" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
-    <a href="https://www.linkedin.com/in/contributor2" target="_blank" style="font-weight: bold;">Contributor 2</a>
+    <img src="https://media.licdn.com/dms/image/v2/C4D03AQFxkjoL41Vq-A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1653217262059?e=1741824000&v=beta&t=TvWk4l4zIGtdzMbUJtk6-2V6hf2PcJ5lR5XgBSeuuGM" alt="Contributor 2" style="width: 150px; height: 150px; border-radius: 50%; margin-right: 10px;">
+    <a href="https://www.linkedin.com/in/kevansoon/" target="_blank" style="font-weight: bold;">Kevan Soon</a>
   </div>
 </div>
 
   <div style="display: flex; align-items: center; margin-right: 20px;">
-    <img src="https://example.com/profile-image2.jpg" alt="Contributor 2" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
-    <a href="https://www.linkedin.com/in/contributor2" target="_blank" style="font-weight: bold;">Contributor 2</a>
+    <img src="https://media.licdn.com/dms/image/v2/C5603AQFidBM2K2d3kA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1636695735903?e=1741824000&v=beta&t=B7t6_dv033Av4Zxrdg0nCCo2PpVNrdoeerP575slQTw" alt="Contributor 3" style="width: 150px; height: 150px; border-radius: 50%; margin-right: 10px;">
+    <a href="https://www.linkedin.com/in/zulfaqarhafez/" target="_blank" style="font-weight: bold;">Zulfaqar Hafez</a>
+  </div>
+</div>
+
+  <div style="display: flex; align-items: center; margin-right: 20px;">
+    <img src="https://media.licdn.com/dms/image/v2/D5603AQEyiGzENyH1bg/profile-displayphoto-shrink_400_400/B56ZRUuMB.G8Ag-/0/1736588182873?e=1741824000&v=beta&t=ngroT--AxMlb7qWdIaZIj5AKxP0xaJe0ygQdcF_EvFU" alt="Contributor 4" style="width: 150px; height: 150px; border-radius: 50%; margin-right: 10px;">
+    <a href="https://www.linkedin.com/in/amir-ashraf-45464119b/" target="_blank" style="font-weight: bold;">Amir Ashraf</a>
   </div>
 </div>
 
