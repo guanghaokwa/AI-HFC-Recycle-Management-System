@@ -2,9 +2,9 @@
 
 
 <h1>Project Description: AI-Powered Waste Classification and Recycling Awareness System</h1>
-Singapore's domestic recycling rate has remained low, largely due to incorrect recycling practices and contamination of recyclables. To address these challenges, our project leverages image processing, AI technology, and gamification to create a comprehensive solution that aligns with the Singapore Green Plan 2030 and the Zero Waste Masterplan, contributing to the nation’s sustainability goals.
+Singapore's domestic recycling rate has remained low, largely due to incorrect recycling practices and contamination of recyclables. To address these challenges, our project leverages image processing, AI technology, and gamification to create a comprehensive solution that aligns with the Singapore Green Plan 2030 and the Zero Waste Masterplan, contributing to the nation’s sustainability goals. <br> <br>
 
-Our Waste Classification System uses image processing to analyze photos of waste and classify items as recyclable or non-recyclable. By providing accurate classification, the system reduces contamination in recyclables, ensuring that more materials are effectively recycled. This directly supports the Zero Waste Masterplan’s objective of achieving a 30% domestic recycling rate by 2030.
+Our Waste Classification System uses image processing to analyze photos of waste and classify items as recyclable or non-recyclable. By providing accurate classification, the system reduces contamination in recyclables, ensuring that more materials are effectively recycled. This directly supports the Zero Waste Masterplan’s objective of achieving a 30% domestic recycling rate by 2030. 
 
 The system is enhanced by an AI-Powered Assistant, which allows users to ask about recyclable items and learn how to dispose of waste correctly. By providing accessible guidance, the assistant promotes awareness of recycling practices and highlights how individual recycling efforts contribute to Singapore's sustainability goals, aligning with the Green Plan's vision of fostering eco-conscious habits among citizens.
 
