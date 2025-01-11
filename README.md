@@ -1,4 +1,4 @@
-<h1>♻️GreenHub AI</h1>
+<h1>♻️GreenMerlion</h1>
 
 
 <h1>Project Description: AI-Powered Waste Classification and Recycling Awareness System</h1>
