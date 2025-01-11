@@ -1,0 +1,126 @@
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #0366d6;
+    outline: none;
+}
+
+/* Login Page CSS Start */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 360px;
+}
+
+.login-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #24292e;
+    text-align: center;
+}
+
+.login-container img {
+    display: block;
+    margin: 20px auto 0;
+    /* Centers the image horizontally */
+}
+
+.login-button {
+    background-color: #2ea44f;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-button:hover {
+    background-color: #22863a;
+}
+
+.login-error p {
+    color: #dc3545;
+    text-align: center;
+}
+
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.additional-links a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.additional-links a:hover {
+    text-decoration: underline;
+}
+
+/* Login Page CSS End */
+
+/* Sign Up Page CSS Start */
+.signup-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 360px;
+}
+
+.signup-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #24292e;
+    text-align: center;
+}
+
+.signup-container img {
+    display: block;
+    margin: 20px auto 0;
+    /* Centers the image horizontally */
+}
+
+.signup-button {
+    background-color: #2ea44f;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.signup-button:hover {
+    background-color: #22863a;
+}
+
+.signup-error {
+    color: #dc3545;
+}
+/* Sign Up Page CSS End */

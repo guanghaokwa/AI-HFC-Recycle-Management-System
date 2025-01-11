@@ -1,21 +1,47 @@
 {% extends 'base.html' %}
 
+{% block additional_css_content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/static/login/green.png');
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+
+{% endblock %}
+
 {% block content %} 
-<div>
+<div class="signup-container">
+    <h1>Sign Up to Recycling App</h1>
+    <img src="/static/login/recycle.png" alt="Recycling App Logo" width="100" height="100">
+
     <form method="POST">
-        <label>Username:</label>
-        <input type="text" name="username" id="username" required>
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" id="password" required/>
+        </div>
 
-        <label>Password:</label>
-        <input type="password" name="password" id="password" required/>
+        <div class="form-group">
+            <label>Confirm Password:</label>
+            <input type="password" name="re_password" id="re_password" required/>
+        </div>
 
-        <label>Confirm Password:</label>
-        <input type="password" name="re_password" id="re_password" required/>
-
-        <input type="submit" value="Sign Up" />
+        <input type="submit" value="Sign Up" class="signup-button"/>
     </form>
 
-    <ul>
+    <ul class="signup-error">
         {% for status in status_list %}
         <li>{{status}}</li>
         {% endfor %}

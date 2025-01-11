@@ -1,14 +1,46 @@
 {% extends 'base.html' %}
 
+{% block additional_css_content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/static/login/green.png');
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+
+{% endblock %}
+
 {% block content %} 
-    <form method="POST">
-        <input type="text" name="username" id="username" required/>
-        <input type="password" name="password" id="password" required/>
+    <div class="login-container">
+        <h1>Sign in to Recycling App</h1>
+        <img src="/static/login/recycle.png" alt="Recycling App Logo" width="100" height="100">
 
-        <input type="submit" value="Login" />
-    </form>
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required/>
+            </div>
 
-    <p>{{ status }}</p>
+            <input type="submit" value="Login" class="login-button"/>
+        </form>
 
-    <a href="/signup" onclick="signup_click()" id="signup">Sign Up</a>
+        <div class="login-error">
+            <p>{{ status }}</p>
+        </div>
+
+        <div class="additional-links">
+            <a href="/signup" id="signup">Don't have an account? Sign Up</a>
+        </div>
+    </div>
 {% endblock %}
