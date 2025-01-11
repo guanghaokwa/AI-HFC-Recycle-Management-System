@@ -1,9 +1,12 @@
 import psycopg2
 from config import DB_PARAMS
+from flask import request
 
 cat_type_list = ['Metal', 'Plastic', 'Paper'] # Different category type available when user sign up account
 
 HISTORY_INFO_MAX_DISPLAY = 4 # Max No of Most Recent History Info to display in Dashboard
+
+POINT_TO_ADD = 1 # UPDATE field for point to add if user interact wih QR code
 
 def get_connection():
     conn = psycopg2.connect(**DB_PARAMS)
@@ -24,20 +27,27 @@ def find_userID(username):
 
     return user_id
 
-def create_user_cat(username): 
+def create_user_cat(username, cat_type): 
     conn = get_connection()
     curs = conn.cursor()
     
     user_id = find_userID(username)
 
     for type in cat_type_list:
-        
-        # Create multiple category linked to user with default point of 0
-        sql_insert = 'INSERT INTO category ("user_ID", "cat_Name") VALUES (%s, %s);'
 
-        curs.execute(sql_insert, (user_id, type,))
-        conn.commit()
+        if type == cat_type:
+            # Create that category linked to the user with 1 point to add
+            sql_insert = 'INSERT INTO category ("user_ID", "cat_Name", amount) VALUES (%s, %s, %s);'
 
+            curs.execute(sql_insert, (user_id, type, POINT_TO_ADD,))
+            conn.commit()
+        else:
+            # Create multiple category linked to user with default point of 0
+            sql_insert = 'INSERT INTO category ("user_ID", "cat_Name") VALUES (%s, %s);'
+
+            curs.execute(sql_insert, (user_id, type,))
+            conn.commit()
+    
     curs.close()
     conn.close()
 
@@ -72,3 +82,27 @@ def retrieve_dashboard_info(username):
     result = curs.fetchall()
 
     return (result, result[0][1])
+
+def AddPts_WhenLogin(username):
+    point = POINT_TO_ADD
+    type = request.args.get('type')        
+
+    conn = get_connection()
+    curs = conn.cursor()
+
+    user_id = find_userID(username)
+
+    # Update user total point by 1
+    sql_update = "UPDATE account SET point = point + %s WHERE username = %s"
+    curs.execute(sql_update, (point, username))
+    conn.commit()
+
+    # Update user total point for that category by 1
+    sql_update2 = 'UPDATE category SET amount = amount + %s WHERE "user_ID" = %s AND "cat_Name" = %s'
+    curs.execute(sql_update2, (point, user_id, type, ))
+    conn.commit()
+
+    curs.close()
+    conn.close()
+
+    return 'Successful Updated'

@@ -40,7 +40,22 @@
         </div>
 
         <div class="additional-links">
-            <a href="/signup" id="signup">Don't have an account? Sign Up</a>
+            <a href="/signup" id="signup" onclick="signup_click()">Don't have an account? Sign Up</a>
         </div>
     </div>
+
+    <script>
+        function signup_click() {
+            let current_url = window.location.href
+            let url_list = current_url.split('?')
+
+            if (url_list.length == 2) {
+                let query_parms = url_list[1]
+
+                url_string = "/signup?" + query_parms 
+                console.log(url_string)
+                document.getElementById('signup').href = url_string
+            }
+        }
+    </script>
 {% endblock %}

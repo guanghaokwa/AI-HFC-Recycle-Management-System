@@ -1,10 +1,40 @@
 import bcrypt
-from flask import Flask, render_template, request, session, redirect, Response
+import qrcode
+import os
+import psycopg2
+from PIL import Image
+from flask import Flask, render_template, request, session, redirect, Response, send_file
 from config import SECRET_KEY 
-from util import get_connection, create_user_cat, retrieve_dashboard_info, find_history_log
+from util import get_connection, create_user_cat, retrieve_dashboard_info, find_history_log, find_userID, AddPts_WhenLogin
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
+
+QR_IMAGE_PATH = 'static/qr_code.png'
+
+POINT_TO_ADD = 1 # UPDATE field for point to add if user interact wih QR code
+
+temp_data_list = [] # Temporary Storage the image file (data and type)
+
+def create_history_log(username, result_string):
+    image_data = temp_data_list[0]
+    image_type = temp_data_list[1]
+    conn = get_connection()
+    curs = conn.cursor()
+
+    user_id = find_userID(username)
+
+    sql_insert = 'INSERT INTO history ("user_ID", "res_string", "detect_img_data", "detect_img_type") VALUES (%s, %s, %s, %s);'
+    curs.execute(sql_insert, (user_id, result_string, psycopg2.Binary(image_data), image_type))
+    conn.commit()
+
+    curs.close()
+    conn.close()
+    
+    del temp_data_list[1]
+    del temp_data_list[0]
+
+    return "Successful"
 
 @app.route('/')
 def index():
@@ -34,23 +64,28 @@ def login():
             # To compare password if matches
             if bcrypt.checkpw(password.encode('utf-8'), stored_hash_pw):
                 session['username'] = username
-                
+
+                # Only Add Points if the user interact with QR Code
+                if 'pt_check' in request.args and 'type' in request.args:
+                    AddPts_WhenLogin(username)
+                    create_history_log(username, request.args.get('type'))
+    
                 cat_info = retrieve_dashboard_info(username)
 
                 history_info = find_history_log(username)
                 username = session['username']
                 point = cat_info[1]
-                cat_info = cat_info[0] 
+                cat_info = cat_info[0]
 
                 curs.close()
                 conn.close()
                 
                 return render_template('dashboard.html', username=username, point=point, cat_info=cat_info, history_info=history_info)
             else:
-                status = 'Password Incorrect'
+                status = 'Sorry, your password was incorrect. Please try again.'
                 return render_template("login.html", status=status)
         else:
-            status = 'Username not found'
+            status = 'Sorry, your username is not found. Please try again'
             return render_template("login.html", status=status)
         
     return render_template('login.html')
@@ -59,7 +94,7 @@ def login():
 def signup():
     if 'username' in session:
         return redirect('/dashboard')
-    
+
     if request.method == 'POST':
         status_list = []
 
@@ -88,19 +123,27 @@ def signup():
         if len(status_list) == 0:
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-            sql_insert = "INSERT INTO account (username, password) VALUES (%s, %s);"
-            curs.execute(sql_insert, (username, hashed_password.hex(),))
+            point = 0
+            cat_type = ''
+
+            if 'pt_check' in request.args and 'type' in request.args:
+                point = POINT_TO_ADD
+                cat_type = request.args.get('type')
+
+            sql_insert = "INSERT INTO account (username, password, point) VALUES (%s, %s, %s);"
+            curs.execute(sql_insert, (username, hashed_password.hex(), point,))
             conn.commit()
 
-            create_user_cat(username)
+            create_user_cat(username, cat_type)
             cat_info = retrieve_dashboard_info(username)
+
+            if temp_data_list != []:
+                create_history_log(username, cat_type)
 
             session['username'] = username
 
             curs.close()
             conn.close()
-
-            username = session['username']
             
             history_info = find_history_log(username)
             username = session['username']
@@ -150,5 +193,12 @@ def get_image(image_id): # To extract the images
 
     return Response(image_data, content_type=image_type)
 
+@app.route('/static/qr_code.png')
+def qr_code_image():
+    return send_file(QR_IMAGE_PATH)
+
 if __name__ == "__main__":
+    if not os.path.exists('static'):
+        os.makedirs('static')
+        
     app.run(port=5000)
