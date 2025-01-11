@@ -2,8 +2,33 @@
 
 {% block content %} 
 <div>
-    <h2>Recycling Dashboard</h2>
+    <h1>Recycling Dashboard</h1>
     <h2>Welcome, {{ username }}</h2>
+
+    <a href="/logout">Logout</a>
+
+    <p>Total Points: {{ point }}</p>
+
+    <hr>
+    <h2>Category Information</h2>
+    <ul>
+        {% for cat in cat_info %}
+        <li>{{ cat[2] }} | {{ cat[3] }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>History Data</h2>
+    {% if history_info == [] %}
+        <p>No Image Uploaded Yet</p>
+    {% else %}
+        {% for hist in history_info %}
+        <div>
+            <img src="/image/{{ hist[0] }}" width="50" height="50">
+        </div>
+        {% endfor %}
+    {% endif %}
 </div>
 
 {% endblock %}
