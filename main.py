@@ -4,7 +4,7 @@ import bcrypt
 import os
 import random # To replace once correct object type detected from LabelImg
 from flask import Flask, render_template, request, redirect, send_file, session, Response
-from config import SECRET_KEY
+from config import SECRET_KEY, NGROK_TOKEN
 from PIL import Image
 from pyngrok import ngrok
 import requests
@@ -62,6 +62,32 @@ def generate_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/chatbot')
+def chatbot():
+     return render_template('chatbot.html')
+
+
+@app.route('/send', methods=['GET','POST'])
+def send_to_colab():
+    COLAB_NGROK_URL = "YOUR_NGROK_URL/process"
+
+    if request.method == 'GET':
+        return render_template('chatbot.html')
+    
+    elif request.method == 'POST':
+        user_input = request.form.get('prompt')  # Get the input from the form
+        if not user_input:
+            return render_template("chatbot.html", error="Please provide a prompt.")
+
+        try:
+            # Forward the input to Colab
+            response = requests.post(COLAB_NGROK_URL, json={"prompt": user_input})
+            colab_response = response.json().get("response", "No response from Colab.")
+            return render_template("chatbot.html", prompt=user_input, response=colab_response)
+        except Exception as e:
+            return render_template("chatbot.html", error=f"Error: {str(e)}")
+
             
 @app.route('/video_feed')
 def video_feed():

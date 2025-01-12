@@ -23,7 +23,7 @@ POINT_TO_ADD = 1 # UPDATE field for point to add if user interact wih QR code
 
 def send_image_to_colab(file):
     # Replace with the actual public URL from Colab
-    colab_url = "https://b482-104-196-70-150.ngrok-free.app/predict"  # Replace with the actual Ngrok URL from Colab
+    colab_url = "YOUR_NGROK_URL/predict"  # Replace with the actual Ngrok URL from Colab
     files = {'file': file}
     response = requests.post(colab_url, files=files)
     return response
