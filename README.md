@@ -122,3 +122,8 @@ python main.py
 </table>
 
 <h1>Additional Notes</h1>
+In the future, the GreenMerlion.AI aims to integrate an analytics platform that leverages data collected from trash points deployed across Singapore. These smart trash points, equipped with object detection and IoT capabilities, will generate valuable insights such as:
+
+1. **Geospatial Waste Data**: Track waste and recycling patterns across different regions in Singapore to pinpoint underperforming zones for recycling.
+
+2. **Dynamic Waste Management**: Enable real-time optimization of waste collection schedules based on bin fill levels, reducing operational costs and environmental impact. This feature supports efficient urban planning and resource allocation in a smart city framework.
