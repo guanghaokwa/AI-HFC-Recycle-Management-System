@@ -11,10 +11,10 @@ The system is enhanced by an AI-Powered Assistant, which allows users to ask abo
 To encourage widespread participation, the project incorporates a Gamification System, rewarding users for correct recycling practices. This incentive-driven approach motivates long-term behavior change and helps build a community committed to responsible waste management.
 
 <h1>Prerequisites</h1>
-1. 2 NGROK Token (1 for Google Colab and 1 for local Flask App) <br>
-2. Imported database file into local PgAdmin 4 PostgreSQL
+1. 2 NGROK Token (1 for Google Colab and 1 for local Flask App) 
 
-<h1>Database Setup Instructions</h1>
+<h1>Setup Instructions / Usage Guide</h1>
+<h2>Database Setup Instructions</h2>
 
 1. Install PgAdmin 4 and PostgreSQL if you do not have on your local computer <br>
     - Download <a href="https://www.pgadmin.org/download/">PgAdmin</a> and <a href="https://www.postgresql.org/download/">PostgreSQL</a>
@@ -34,7 +34,7 @@ To encourage widespread participation, the project incorporates a Gamification S
     - Right Click on the Database, you have just created and select Restore
     - In the dialog box that appear, do attach the file which you have previously saved in your local computer. then click Restore
 
-<h1>Setup Instructions</h1>
+<h2>Setup Instructions for local flask app and google colab</h2>
 1. Create a python virtual environment, run the following command
 
 ```bash
@@ -84,7 +84,11 @@ python main.py
     - Username: admin
     - Password: admin123
 
-<h1>Usage Guide</h1>
+<h1>Tech Stack and Solution View</h1>
+<h2>Tech Stack</h2>
+<img src="TechStack.png"/>
+<h2>Solution View</h2>
+<img src="usage_guide.png"/>
 
 <h1>Contributors</h1>
 
