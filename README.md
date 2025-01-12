@@ -11,7 +11,7 @@ The system is enhanced by an AI-Powered Assistant, which allows users to ask abo
 To encourage widespread participation, the project incorporates a Gamification System, rewarding users for correct recycling practices. This incentive-driven approach motivates long-term behavior change and helps build a community committed to responsible waste management.
 
 We aim to deploy our waste classification system to recycle bins(blue bins) and also mall bins.An example illustration is shown below
-<img src="bin_detect.webp"/>
+<img src="Bin_Detect.webp"/>
 <h1>Prerequisites</h1>
 1. 2 NGROK Token (1 for Google Colab and 1 for local Flask App) 
 
