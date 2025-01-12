@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recycle Management</title>
+
+    <!-- Reference to your CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>Recycling App</header>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="custom-dropdown">
+                <select onchange="navigateTo(this.value)">
+                    <option value="dashboard">Dashboard</option>
+                    <option value="chatbot" selected>Chatbot</option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <div class="chat-display" id="chat-display">
+                {% if prompt %}
+                <div class="message user-message">{{prompt}}</div>
+                {% endif %}
+                {% if response %}
+                <div class="message bot-message">{{response}}</div>
+                {% endif %}
+            </div>
+            <div class="chat-input">
+            <form action="/send" method="POST" id="chat-form">
+                <textarea placeholder="Type your message..." id="chat-input" name="prompt" ></textarea>
+                <button type="submit">➤</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>    
+</html>

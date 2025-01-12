@@ -1,34 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %} 
-<div>
-    <h1>Recycling Dashboard</h1>
-    <h2>Welcome, {{ username }}</h2>
-
-    <a href="/logout">Logout</a>
-
-    <p>Total Points: {{ point }}</p>
-
-    <hr>
-    <h2>Category Information</h2>
-    <ul>
-        {% for cat in cat_info %}
-        <li>{{ cat[2] }} | {{ cat[3] }}</li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h2>History Data</h2>
-    {% if history_info == [] %}
-        <p>No Image Uploaded Yet</p>
-    {% else %}
-        {% for hist in history_info %}
-        <div>
-            <img src="/image/{{ hist[0] }}" width="50" height="50">
+    <header>Recycling App</header>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="custom-dropdown">
+                <select onchange="navigateTo(this.value)">
+                    <option value="dashboard">Dashboard</option>
+                    <option value="chatbot">Chatbot</option>
+                </select>
+            </div>
         </div>
-        {% endfor %}
-    {% endif %}
-</div>
-
+        <div class="dashboard">
+            <div class="left-column">
+                <div class="box">
+                    <h2>Total Points</h2>
+                    <h1>{{ point }}</h1>
+                </div>
+                <div class="box">
+                    <h2>Total Objects Detected</h2>
+                    <ul>
+                        {% for cat in cat_info %}
+                        <li>{{ cat[2] }} | {{ cat[3] }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="box redeem-prize">
+                    <h2>Redeem Prizes</h2>
+                    <img src="static/ntuc_fairprice_voucher.jpg" alt="Fairprice Prize">
+                    <button>Claim</button>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="large-box">
+                    <h2>Last Detected Object</h2>
+                    <div class="image-container">
+                        {% for hist in history_info %}
+                        <img src="/image/{{ hist[0] }}" class="detected-image" alt="Last Detected Object">
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>  
 {% endblock %}

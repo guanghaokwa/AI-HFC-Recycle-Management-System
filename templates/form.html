@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Form</title>
+</head>
+<body>
+    <h1>Send Prompt to Google Colab</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/send" method="post">
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" name="prompt" required>
+        <button type="submit">Send</button>
+    </form>
+    {% if prompt and response %}
+        <div style="margin-top: 20px;">
+            <h2>Results</h2>
+            <p><strong>Response:</strong> {{ response }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
