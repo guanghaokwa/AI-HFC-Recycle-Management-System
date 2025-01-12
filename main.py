@@ -151,7 +151,7 @@ def index():
         
                     # QR Code Data (User will be redirected to this URL when scan)
                     highest_image_detection = object_type
-                    qr_data =   f'{ngrok_url}/login?pt_check&type=' + highest_image_detection
+                    qr_data =   f'{ngrok_url}/login?pt_check&type=' + highest_image_detection[0:1].upper() + highest_image_detection[1:]
 
                     qr = qrcode.QRCode(
                         version=3,
@@ -178,7 +178,7 @@ def index():
                     
                     img.save(QR_IMAGE_PATH)
 
-                    res_string = highest_image_detection[0].upper() + highest_image_detection[1:]
+                    res_string = highest_image_detection[0:1].upper() + highest_image_detection[1:]
                     form_status = 'hide'
 
                     return render_template('index.html', res_string=res_string, form_status=form_status)
