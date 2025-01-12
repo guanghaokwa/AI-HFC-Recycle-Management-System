@@ -27,10 +27,10 @@ To encourage widespread participation, the project incorporates a Gamification S
 
 4. Create a New Database
    - Right Click on Database and select Create > Database
-   - In the dialog box that appear, do provide a name for your database (e.g., "RecyclingSystem"), then click save
+   - In the dialog box that appear, do provide a name for your database (e.g., "GreenMerlionAI"), then click save
 
 5. Import the Database File 
-    - On the GitHub Folder, there is a file named "RecyclingSystem_Backup" which you will need to save in your local computer
+    - On the GitHub Folder, there is a file named "GreenMerlionAI_Database.sql" which you will need to save in your local computer
     - Right Click on the Database, you have just created and select Restore
     - In the dialog box that appear, do attach the file which you have previously saved in your local computer. then click Restore
 
@@ -79,6 +79,10 @@ DB_PARAMS = { <br>
 ```bash
 python main.py
 ```
+
+11. A user account have been created for you to usage
+    - Username: admin
+    - Password: admin123
 
 <h1>Usage Guide</h1>
 
