@@ -14,6 +14,26 @@ To encourage widespread participation, the project incorporates a Gamification S
 1. 2 NGROK Token (1 for Google Colab and 1 for local Flask App) <br>
 2. Imported database file into local PgAdmin 4 PostgreSQL
 
+<h1>Database Setup Instructions</h1>
+
+1. Install PgAdmin 4 and PostgreSQL if you do not have on your local computer <br>
+    - Download <a href="https://www.pgadmin.org/download/">PgAdmin</a> and <a href="https://www.postgresql.org/download/">PostgreSQL</a>
+
+2. Once you have successfully installed and setup, launch PgAdmin 4 on your computer
+
+3. Connect to your PostgreSQL Server
+   - On the left side panel under Servers, click on the dropdown button to connect to the server
+   - You will be prompted to enter your PostgreSQL server password which is the one set during installation)
+
+4. Create a New Database
+   - Right Click on Database and select Create > Database
+   - In the dialog box that appear, do provide a name for your database (e.g., "RecyclingSystem"), then click save
+
+5. Import the Database File 
+    - On the GitHub Folder, there is a file named "RecyclingSystem_Backup" which you will need to save in your local computer
+    - Right Click on the Database, you have just created and select Restore
+    - In the dialog box that appear, do attach the file which you have previously saved in your local computer. then click Restore
+
 <h1>Setup Instructions</h1>
 1. Create a python virtual environment, run the following command
 
@@ -45,7 +65,16 @@ pip install -r requirements.txt
  COLAB_NGROK_URL = "YOUR_NGROK_URL/process" <br>
  colab_url = "YOUR_NGROK_URL/predict"
 
-9. Lastly, run the following command to start your local flask app
+9. Replce the following DB_PARAMS variables in your local flask app under config.py <br>
+DB_PARAMS = { <br>
+&emsp;"database": "YOUR_DATABASE_NAME", <br>
+&emsp;"user": "YOUR_POSTGRESQL_USERNAME", <br>
+&emsp;"password": "YOUR_POSTGRESQL_PASSWORD", <br>
+&emsp;"host": "HOST_NAME (DEFAULT: localhost)", <br>
+&emsp;"port": "PORT_NUMBER (DEFAULT: 5432)" <br>
+} <br>
+
+10. Lastly, run the following command to start your local flask app
 
 ```bash
 python main.py
