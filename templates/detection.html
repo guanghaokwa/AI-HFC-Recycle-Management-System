@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMerlion.AI Detection</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            font-size: 0.9em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Detection Screen Styling */
+        .detection-screen {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        video, canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fits properly */
+        }
+
+        .video-feed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .capture-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .capture-button {
+            background-color: #2ea44f;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Detection Info Styling */
+    .detection-info {
+        width: 100%;
+        max-width: 800px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .detection-info h2 {
+        font-size: 1.4em;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.2em;
+            }
+
+            .detection-screen {
+                padding: 5px;
+            }
+
+            .video-container {
+                max-width: 100%;
+                aspect-ratio: 16 / 9; /* Maintain aspect ratio on mobile */
+            }
+
+            .detection-info {
+                padding: 10px;
+            }
+
+            .detection-info h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>GreenMerlion.AI</header>
+    <main class="detection-screen">
+        <div class="video-container" id="upload_video">
+            <img src="{{ url_for('video_feed') }}" alt="Live Feed" class="video-feed">
+        </div>
+        <div class="capture-container">
+            <form method="POST" id="upload_form">
+                <input type="text" id="form_info" value="{{form_status}}" hidden/>
+                
+                <input type="submit" class="capture-button" value="Capture Image"/>
+                
+                
+            </form>
+        </div>
+        
+        <div class="detection-info" id="qrcode_container" style="display:none">
+            <h2>Detection Results</h2>
+
+            <div style="text-align: center; display:none" id="qrcode-info">
+                <div>
+                    <h2>The detected Image is {{ res_string }}</h2>
+                    <img src="{{ url_for('image_process') }}" alt="QR Code">
+                </div>
+                
+                <a href="/login?pt_check&type={{ res_string }}">
+                    <img src="{{ url_for('qr_code_image') }}" alt="QR Code">
+                </a>
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

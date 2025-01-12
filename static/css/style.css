@@ -124,3 +124,394 @@
     color: #dc3545;
 }
 /* Sign Up Page CSS End */
+
+/* Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Dashboard Container */
+.dashboard-container {
+    flex: 1;
+    max-width: 90%;
+    width: 90%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Custom Dropdown */
+.custom-dropdown select {
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 2fr;  /* Left column takes 1 fraction, right column takes 2 */
+    gap: 30px;
+}
+
+/* Left Column: Smaller boxes */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 130px; /* Fixed height for the small boxes */
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.box h2 {
+    font-size: 1.5em;
+    color: #555;
+}
+
+.box h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.box ul li {
+    margin: 5px 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.box img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Right Column: Larger boxes */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.large-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 550px; /* Fixed height for the large box */
+    overflow-y: auto; /* Enables scrolling when content overflows */
+}
+
+.large-box h2 {
+    font-size: 1.8em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.large-box img {
+    width: 100%; /* Ensure the image stretches to fit the container's width */
+    height: 100%; /* Ensure the image stretches to fill the container's height */
+    object-fit: scale-down; /* Ensure the image covers the box without distorting the aspect ratio */
+    border-radius: 8px;
+}
+
+/* Redeem Prizes Box */
+.box.redeem-prize {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    height: 170px; /* Limit the height of the box to 130px */
+    overflow: hidden; /* Hide any content that overflows */
+}
+
+/* Image styling to scale it down to fit the box */
+.redeem-prize img {
+    width: auto;
+    max-height: 30%; /* Ensure the image fits within the box */
+    object-fit: scale-down; /* Keeps the aspect ratio intact */
+    border-radius: 8px;
+}
+
+.redeem-prize button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.redeem-prize button:hover {
+    background-color: #45a049;
+}
+
+/* Last Detected Object Box with Detection History */
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 550px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Make the title sticky */
+.image-container h2 {
+    font-size: 1.8em;
+    color: #555;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0; /* Stick to the top of the container */
+    background-color: #ffffff; /* Add a background color to prevent overlap with the content */
+    padding: 10px 0; /* Add padding for the title */
+    z-index: 1; /* Ensure the title is above the other content */
+}
+
+.detected-image {
+    width: 100%;
+    max-height: 60%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.detection-history {
+    font-size: 1em;
+    color: #333;
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* Button Styling */
+.box button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.box button:hover {
+    background-color: #45a049;
+}
+
+/* Custom Seamless Dropdown Styling */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.custom-dropdown select {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.custom-dropdown select:focus {
+    outline: none;
+}
+
+.custom-dropdown:after {
+    content: '▼';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.8em;
+    color: #333;
+}
+
+/* Chatbot Styling */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+.chat-display {
+    flex: 1;
+    width: 100%;
+    max-width: 750px;
+    background-color: #e8f5e9;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 450px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.chat-display .message {
+    margin: 15px ;
+    font-size: 1em;
+    max-width: 70%;
+}
+
+/* Add padding for the user and bot messages */
+.chat-display .user-message {
+    background-color: #4CAF50;
+    color: white;
+    margin-left: auto;
+    padding: 15px 20px; /* Extra padding for the user message */
+    border-radius: 12px; /* Optional: makes the user message more rounded */
+}
+
+.chat-display .bot-message {
+    background-color: #e4dfdf;
+    color: #333;
+    padding: 15px 20px; /* Extra padding for the bot message */
+    border-radius: 12px; /* Optional: makes the bot message more rounded */
+}
+
+.chat-input {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+.chat-input textarea {
+    flex: 1;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 10px 60px 10px 20px;
+    font-size: 1em;
+    resize: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-input button:hover {
+    background-color: #45a049;
+}
+
+.chat-input form {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .dashboard {
+        grid-template-columns: repeat(1, 1fr); /* Stacks columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .large-box {
+        height: 300px; /* Smaller height for mobile */
+        max-height: 300px;
+    }
+
+    .large-box img {
+        max-height: 50%; /* Ensure the image scales correctly for smaller screens */
+    }
+}
