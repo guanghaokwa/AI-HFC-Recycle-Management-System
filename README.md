@@ -53,7 +53,7 @@ venv\Scripts\Activate
 pip install -r requirements.txt
 ```
 
-4. Access the Google Colab file  [Open in Google Colab](https://colab.research.google.com/drive/1abc2d34efgh5678)
+4. Access the Google Colab file  [Open in Google Colab](https://colab.research.google.com/drive/1vWjVup8kLSQ1aFpldhzWID2LruQMYvfJ?usp=sharing)
 
 5. Add "best.pt" file into "content" folder for runtime
 
