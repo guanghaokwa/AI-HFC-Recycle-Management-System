@@ -3,7 +3,6 @@ import psycopg2
 import qrcode
 import bcrypt
 import os
-import random # To replace once correct object type detected from LabelImg
 from flask import Flask, render_template, request, redirect, send_file, session, Response
 from config import SECRET_KEY
 from PIL import Image

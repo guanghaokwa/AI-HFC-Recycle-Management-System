@@ -2,7 +2,6 @@ import psycopg2
 import qrcode
 import bcrypt
 import os
-import random # To replace once correct object type detected from LabelImg
 from flask import Flask, render_template, request, redirect, send_file, session, Response
 from config import SECRET_KEY, NGROK_TOKEN
 from PIL import Image
@@ -24,6 +23,8 @@ app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
 QR_IMAGE_PATH = 'static/qr_code.png'
+
+PROCESS_IMAGE = 'static/processed_image.jpg'
 
 POINT_TO_ADD = 1 # UPDATE field for point to add if user interact wih QR code
 
@@ -100,11 +101,9 @@ def index():
     
     if request.method == 'GET':
         form_status = 'not yet'
-        return render_template('index.html', form_status=form_status)
+        return render_template('detection.html', form_status=form_status)
     
     elif request.method == 'POST':
-        # result_string = random.choice(cat_type_list) # To replace the correct object type detected
-        # image_file = request.files['image_upload']
         start_time = time.time()
         success, frame = camera.read()
 
@@ -181,7 +180,7 @@ def index():
                     res_string = highest_image_detection[0:1].upper() + highest_image_detection[1:]
                     form_status = 'hide'
 
-                    return render_template('index.html', res_string=res_string, form_status=form_status)
+                    return render_template('detection.html', res_string=res_string, form_status=form_status)
             else:
                 print(f"Error: Received status code {response.status_code}")
 
@@ -341,6 +340,10 @@ def get_image(image_id): # To extract the images
 @app.route('/static/qr_code.png')
 def qr_code_image():
     return send_file(QR_IMAGE_PATH)
+
+@app.route('/static/processed_image.jpg')
+def image_process():
+    return send_file(PROCESS_IMAGE)
 
 if __name__ == "__main__":
     if not os.path.exists('static'):
