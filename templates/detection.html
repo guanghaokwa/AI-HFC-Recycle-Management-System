@@ -171,14 +171,16 @@
                 <input type="submit" class="capture-button" value="Capture Image"/>
             </form>
         </div>
-        
+   <audio controls autoplay style="display: none;">
+    <source src="data:audio/wav;base64,{{ audio }}" type="audio/wav">
+    </audio>
         <div class="detection-info" id="qrcode_container" style="display:none">
             <h2>Detection Results</h2>
             <h2 class="redirect_timer">Redirecting to QR Code in <span id="redirect">15</span> seconds</h2>
 
             <div style="text-align: center; display:none" id="qrcode-info">
                 <div>
-                    <h2>The detected Image is {{ res_string }}</h2>
+                    <h2>The item detected is {{ res_string }}</h2>
                     <img src="{{ url_for('image_process') }}" alt="QR Code">
                 </div>
             </div>

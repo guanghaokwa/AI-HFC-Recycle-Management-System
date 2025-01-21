@@ -13,6 +13,9 @@ from werkzeug.datastructures import FileStorage
 import json
 import time
 from util import get_connection, create_user_cat, retrieve_dashboard_info, find_history_log, find_userID, AddPts_WhenLogin, send_image_to_colab
+from io import BytesIO
+from gtts import gTTS
+import base64
 
 ngrok.set_auth_token(NGROK_TOKEN)
 tunnel = ngrok.connect(5000)  # Adjust the port to match your Flask app
@@ -189,7 +192,22 @@ def index():
                     form_status = 'hide'
                     session['qr_status'] = "Yes"
 
-                    return render_template('detection.html', res_string=res_string, form_status=form_status)
+                    tts = gTTS(text=f"The item detected is {res_string}, please throw it in the recycling bin", lang='en',tld='co.in')
+
+                    # Save the speech to a temporary file on the disk
+                    temp_filename = "temp_audio.mp3"
+                    tts.save(temp_filename)  # Save to a temporary file
+
+                    # Read the temporary file into a BytesIO object (in-memory file)
+                    with open(temp_filename, 'rb') as f:
+                        audio_file = BytesIO(f.read())
+                    
+                    # Clean up the temporary file
+                    os.remove(temp_filename)
+
+                    audio_base64 = base64.b64encode(audio_file.getvalue()).decode('utf-8')
+                    return render_template('detection.html', res_string=res_string, form_status=form_status,audio=audio_base64)
+
             else:
                 print(f"Error: Received status code {response.status_code}")
 
@@ -199,7 +217,22 @@ def qr_view():
         return redirect('/')
 
     session.pop('qr_status', None)
-    return render_template('qrcode.html')
+    tts2 = gTTS(text=f"Scan the QR code to redeem your point before time runs out", lang='en',tld='co.in')
+    # Save the speech to a temporary file on the disk
+    temp_filename = "temp_audio.mp3"
+    tts2.save(temp_filename)  # Save to a temporary file
+
+    # Read the temporary file into a BytesIO object (in-memory file)
+    with open(temp_filename, 'rb') as f:
+        audio_file = BytesIO(f.read())
+                    
+    # Clean up the temporary file
+    os.remove(temp_filename)
+
+    audio_base64 = base64.b64encode(audio_file.getvalue()).decode('utf-8')
+
+    return render_template('qrcode.html',audio2=audio_base64)
+  
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

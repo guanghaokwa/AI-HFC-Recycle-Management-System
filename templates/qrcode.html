@@ -94,8 +94,10 @@
 
 <main class="qr_code_screen">
     <div class="qr-info">
+        <audio controls autoplay style="display: none;">
+            <source src="data:audio/wav;base64,{{ audio2 }}" type="audio/wav">
+        </audio>
         <span class="countdown_timer">Countdown: <span id="countdown">60</span> seconds</span>
-
         <span class="qr_text">&#8681; Scan to Redeem &#8681;</span>
         <a href="/login?pt_check&type={{ res_string }}">
             <img src="{{ url_for('qr_code_image') }}" alt="QR Code">
