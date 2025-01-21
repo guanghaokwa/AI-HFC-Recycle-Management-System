@@ -498,6 +498,13 @@ header {
     width: 100%;
 }
 
+.faq-link {
+    text-decoration: none;
+    color: white;
+    font-weight: lighter;
+    font-size: 1.1rem
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
     .dashboard {

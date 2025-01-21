@@ -337,6 +337,10 @@ def dashboard():
 
     return render_template('dashboard.html', username=session['username'], point=point, cat_info=cat_info, history_info=history_info)
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
 @app.route('/image/<int:image_id>')
 def get_image(image_id): # To extract the images
     conn = get_connection()

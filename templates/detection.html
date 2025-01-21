@@ -25,6 +25,7 @@
             font-size: 1.5em;
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5em;
         }
 
         footer {
@@ -118,6 +119,13 @@
         margin-bottom: 15px;
     }
 
+    .faq-link {
+        text-decoration: none;
+        color: white;
+        font-weight: lighter;
+        font-size: 1.1rem
+    }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             header {
@@ -148,7 +156,10 @@
     </style>
 </head>
 <body>
-    <header>GreenMerlion.AI</header>
+    <header>
+        GreenMerlion.AI <br/>
+        <a href="/faq" class="faq-link">Visit FAQs Page</a>
+    </header>
     <main class="detection-screen">
         <div class="video-container" id="upload_video">
             <img src="{{ url_for('video_feed') }}" alt="Live Feed" class="video-feed">

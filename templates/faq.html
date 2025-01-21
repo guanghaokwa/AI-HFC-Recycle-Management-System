@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block additional_css_content %}
+<style>
+    .faq-container {
+        flex: 1;
+        max-width: 90%;
+        width: 90%;
+        padding: 20px;
+        margin: 40px auto;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .faq_header {
+        padding: 40px 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        background-color: #e8f5e9;
+        margin-bottom: 15px;
+    }
+
+    .faq_toggle {
+        display: flex;
+        text-align: center;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .faq_toggle a {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 20px 50px;
+        border-radius: 6px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        margin-right: 10px;
+        width: 25%;
+    }
+
+    .faq_container {
+        width: 100%;
+    }
+
+    .faq_group {
+        margin-bottom: 20px;
+        display: block;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .prompt_info {
+        margin-bottom: 20px;
+    }
+
+    .prompt_info h3 {
+        margin-bottom: 5px;
+    }
+
+    .prompt_info span {
+        line-height: 1.5;
+        font-size: 1.2rem;
+        color: grey;
+    }
+
+    @media (max-width: 768px) {
+        .faq_toggle {
+            display: contents;
+        }
+
+        .faq_toggle a {
+            margin-bottom: 10px;
+            width: -webkit-fill-available;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header>
+    GreenMerlion.AI <br/>
+    <a href="/faq" class="faq-link">Visit FAQs Page</a>
+</header>
+<div class="faq-container">
+    <div class="faq_header">
+        FREQUENTLY ASKED QUESTIONS
+    </div>
+
+    <div class="faq_toggle">
+        <a href="#cat1">General recycling question</a>
+        <a href="#cat2">Recycling Programs and initiative</a>
+        <a href="#cat3">Environmental Impact</a>
+        <a href="#cat4">Specific Recycling Services</a>
+    </div>
+
+    <div class="faq_container">
+        <section class="faq_group" id="cat1">
+            <h2>General recycling question</h2>
+            <div class="prompt_info">
+                <h3>Question: What items can I recycle in Singapore?</h3>
+                <span>In Singapore, you can recycle the following items:
+                    <br/>1. Paper and cardboard <br/>2. Plastic bottles and containers (PET/HDPE)
+                    <br/>3. Glass bottles and jars
+                    <br/>4. Metal cans and tins <br/>5. Food waste (organic compostable materials)
+                    <br/>6. Electronics (e-waste) such as computers, phones, and televisions
+                    <br/>7. Batteries (rechargeable and non-rechargeable) <br/>8. Used cooking oil
+                    <br/>9. Textiles (clothing, shoes, bedding etc.) <br/>10. Sanitary products (nappies,
+                    sanitary pads, tampons etc.)
+                    <br />Please note that some items may have specific collection methods or requirements, so it's best
+                    to check with your
+                    local council or waste management agency for more information. Additionally, there are also some
+                    private
+                    recycling centers in Singapore that accept certain types of materials not accepted by the
+                    municipalities.
+                </span>
+            </div>
+
+            <hr />
+
+            <div class="prompt_info">
+                <h3>Where can I drop off recyclable items?</h3>
+                <span>In Singapore, there are several ways to drop off 
+                    <br/>1. Recycling Bins: You can find blue recycling bins in public places such as residential areas, schools, and shopping malls. These bins are for general recyclables like paper, plastics, glass, and metal.
+                    <br/>2. Reverse Vending Machines: Singapore has installed reverse vending machines where you can drop off used plastic bottles and cans in exchange for rewards or credits. Locations include certain shopping malls and MRT stations.
+                    <br/>3. Community Recycling Points: In certain HDB (Housing Development Board) estates, there are designated community recycling points where you can drop off recyclables.
+                </span>
+            </div>
+        </section>
+
+        <section class="faq_group" id="cat2">
+            <h2>Recycling Programs and initiative</h2>
+            <div class="prompt_info">
+                <h3>Question: What is the National Recycling Program (NRP) and how does it work?</h3>
+                <span>The NRP adopts a collection system in which paper, plastic, glass and metal recyclables are deposited 
+                    into the same blue recycling bin for collection by the Public Waste Collectors (PWCs). 
+                </span>
+            </div>
+
+            <hr />
+
+            <div class="prompt_info">
+                <h3>Question: What is Singapore Zero Waste Plan 2030?</h3>
+                <span>The Singapore Zero Waste Plan 2030 is a national initiative launched in 2019 by the National Environment Agency (NEA) 
+                    to reduce waste sent to landfills and promote sustainable resource management practices in Singapore. 
+                    Under this plan, the government has set ambitious targets to reduce per capita food waste by 50% and non-food waste by 30%, 
+                    as well as increase recycling rates to 70%. To achieve these goals, the NEA is working closely with various stakeholders 
+                    including businesses, schools, and individuals to adopt sustainable practices such as reducing food packaging, composting 
+                    organic waste, and promoting circular economy initiatives. 
+                    <br/>Some of the key strategies outlined in the plan include: 
+                    <br/>* Implementing a national food waste reduction program to reduce food waste generated by households, caterers, and businesses. 
+                    <br/>* Increasing recycling rates through the implementation of new technologies and infrastructure. 
+                    <br/>* Promoting sustainable consumption practices among consumers through education and outreach programs.
+                </span>
+            </div>
+        </section>
+
+        <section class="faq_group" id="cat3">
+            <h2>Environmental Impact</h2>
+            <div class="prompt_info">
+                <h3>Question: How does recycling help reduce Singapore’s carbon footprint?</h3>
+                <span>Recycling helps reduce Singapore’s carbon footprint in several ways: 
+                    <br/>1. Reduces greenhouse gas emissions: Recycling reduces the need for raw materials extraction, which can lead to lower greenhouse gas emissions from mining and transportation activities. 
+                    <br/>2. Saves energy: Recycling requires less energy than producing new products from virgin materials. For example, recycling aluminum can use 95% less energy than producing a new aluminum can from raw materials. 
+                    <br/>3. Reduces landfill waste: By recycling more and throwing away less, Singapore can reduce the amount of waste sent to landfills, which in turn reduces greenhouse gas emissions associated with methane production.</span>
+            </div>
+
+            <hr/>
+
+            <div class="prompt_info">
+                <h3>Question: What are the environmental benefits of recycling in Singapore?</h3>
+                <span>Recycling in Singapore has numerous environmental benefits. Here are some of them: 
+                    <br/>1. Reduces waste sent to landfills - By recycling, we can reduce the amount of waste that is sent to landfills. 
+                    This helps to conserve landfill space and reduces the risk of contamination from leachate (a corrosive liquid that forms in landfills) into groundwater supplies. 
+                    <br/>2. Saves natural resources - Recycling helps to save natural resources by reducing the need for raw materials extraction. For example, recycling one ton of paper saves 17 trees and 7,000 gallons of water. 
+                    <br/>3. Reduces greenhouse gas emissions - The production of new materials from raw materials often requires more energy than the recycling process itself. 
+                    By reducing the need for new material production, we can reduce greenhouse gas emissions associated with energy consumption. 
+                    <br/>4. Supports biodiversity - Recycling helps to support biodiversity by reducing the demand for raw materials that are often sourced from areas of high conservation value. This can help to protect ecosystems and preserve habitats for endangered species.</span>
+            </div>
+        </section>
+
+        <section class="faq_group" id="cat4">
+            <h2>Specific Recycling Services</h2>
+            <div class="prompt_info">
+                <h3>Question: Are there any incentives or rewards for recycling in Singapore?</h3>
+                <span>Yes, there are several incentives and rewards for recycling in Singapore! 
+                    The government has implemented various programs to encourage residents to recycle more. 
+                    <br/>For example, you can earn points on the Carbon Offset Programme (COP) by recycling household waste like plastic bottles, cans, and paper. 
+                    You can also receive cashback rewards for recycling at designated recycling centers. 
+                    Additionally, some supermarkets offer discounts or loyalty points when you bring in your recyclables!</span>
+            </div>
+
+            <hr />
+
+            <div class="prompt_info">
+                <h3>Question: Is there a mobile app to track recycling pickups in Singapore?</h3>
+                <span>Yes, there are several mobile apps available that allow you to track your recycling collections and receive reminders when it's time to put out your recyclables. 
+                    <br/>Some popular options include the NEA's RecycleRight! app, as well as other third-party apps such as GreenRewards and GoRecycle. These apps use GPS technology to locate nearby collection points and provide real-time updates on pickup schedules and locations.</span>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
