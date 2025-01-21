@@ -75,6 +75,26 @@ def chatbot():
     
     return render_template('chatbot.html', username=username)
 
+def format_response(response_text):
+    """Optimized function to format the assistant's response even faster."""
+    response_text = response_text.strip()
+
+    # Remove redundant "ASSISTANT:" label efficiently
+    if response_text.lower().startswith("assistant:"):
+        response_text = response_text[10:].strip()
+
+    # Capitalize first letter if necessary
+    response_text = response_text.capitalize() if response_text else response_text
+
+    # Ensure lists are formatted properly
+    formatted_lines = [
+        "• " + line[1:].strip() if line.startswith("*") else
+        "\n" + line if len(line) > 2 and line[0].isdigit() and line[1] == "." else
+        line
+        for line in response_text.split("\n")
+    ]
+
+    return "\n".join(formatted_lines)
 
 @app.route('/send', methods=['GET','POST'])
 def send_to_colab():
@@ -96,6 +116,8 @@ def send_to_colab():
             # Forward the input to Colab
             response = requests.post(COLAB_NGROK_URL, json={"prompt": user_input})
             colab_response = response.json().get("response", "No response from Colab.")
+            
+            colab_response = format_response(colab_response)
             return render_template("chatbot.html", prompt=user_input, response=colab_response, username=username)
         except Exception as e:
             return render_template("chatbot.html", error=f"Error: {str(e)}", username=username)
