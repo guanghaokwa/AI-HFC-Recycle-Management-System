@@ -66,7 +66,11 @@ def generate_frames():
 
 @app.route('/chatbot')
 def chatbot():
-     return render_template('chatbot.html')
+    username = ''
+    if 'username' in session:
+        username = session['username']
+    
+    return render_template('chatbot.html', username=username)
 
 
 @app.route('/send', methods=['GET','POST'])

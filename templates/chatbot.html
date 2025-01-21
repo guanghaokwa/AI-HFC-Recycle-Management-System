@@ -7,9 +7,80 @@
 
     <!-- Reference to your CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            min-height: 0vh;
+        }
+
+        .dashboard-container {
+            min-height: 70vh;
+        }
+
+        .user-container {
+            flex: 1;
+            max-width: 90%;
+            width: 90%;
+            margin: 40px auto 10px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            font-size: 1em;
+        } 
+        
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0 10px 0;
+            width: 100%;
+        }
+
+        .user-info-box1 h3{
+            font-weight: 400;
+            font-size: 25px;
+            margin: 0px;
+            text-overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .user-info-box2 a {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .user-info-box1 {
+                font-size: 20px;
+            }
+        }
+
+    </style>
 </head>
 <body>
     <header>Recycling App</header>
+
+    {% if username != '' %}
+        <div class="user-container">
+            <div class="user-info">
+                <div class="user-info-box1">
+                    <h3>Welcome, {{username}}</h3>
+                </div>
+                <div class="user-info-box2">
+                    <a href="/logout" type="button">Logout</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     <div class="dashboard-container">
         <div class="dashboard-header">
             <div class="custom-dropdown">
