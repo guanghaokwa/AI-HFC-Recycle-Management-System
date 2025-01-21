@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block additional_css_content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1em;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 1em;
+        font-size: 0.9em;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .qr_code_screen {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 10px;
+    }
+
+    .qr-info {
+        width: 100%;
+        max-width: 800px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        display: grid;
+    }
+
+    .countdown_timer {
+        font-weight: bold;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    .qr_text {
+        font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .qr_code_screen {
+            padding: 5px;
+        }
+
+        .countdown_timer {
+            font-size: 20px;
+        }
+
+        .qr-info {
+            padding: 10px;
+        }
+
+        .qr_text {
+            font-size: 15px;
+        }
+    }
+</style>
+
+{% endblock %}
+
+{% block content %} 
+<header>GreenMerlion.AI</header>
+
+<main class="qr_code_screen">
+    <div class="qr-info">
+        <span class="countdown_timer">Countdown: <span id="countdown">60</span> seconds</span>
+
+        <span class="qr_text">&#8681; Scan to Redeem &#8681;</span>
+        <a href="/login?pt_check&type={{ res_string }}">
+            <img src="{{ url_for('qr_code_image') }}" alt="QR Code">
+        </a>
+        <span class="qr_text">&#8679; Scan to Redeem &#8679;</span>
+    </div>
+    
+</main>
+
+<script>
+    let cookie = document.cookie
+
+    var qr_counter = document.getElementById("countdown").innerHTML
+
+    var timer = 60
+
+    if (cookie = 'qr_status=Yes') {
+        window.setInterval(() => {
+            if (timer > 0) {
+                timer--;
+                document.getElementById("countdown").innerHTML = timer
+            }
+
+            if (timer <= 0) {
+                timer = 60
+                document.getElementById("countdown").innerHTML = 60
+
+                document.cookie = "qr_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+                window.location.href = '/'
+            }
+        }, 1000)
+    }
+</script>
+{% endblock %} 

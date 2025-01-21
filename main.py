@@ -76,22 +76,26 @@ def chatbot():
 @app.route('/send', methods=['GET','POST'])
 def send_to_colab():
     COLAB_NGROK_URL = "YOUR_NGROK_URL/process"
+    
+    username = ''
+    if 'username' in session:
+        username = session['username']
 
     if request.method == 'GET':
-        return render_template('chatbot.html')
+        return render_template('chatbot.html', username=username)
     
     elif request.method == 'POST':
         user_input = request.form.get('prompt')  # Get the input from the form
         if not user_input:
-            return render_template("chatbot.html", error="Please provide a prompt.")
+            return render_template("chatbot.html", error="Please provide a prompt.", username=username)
 
         try:
             # Forward the input to Colab
             response = requests.post(COLAB_NGROK_URL, json={"prompt": user_input})
             colab_response = response.json().get("response", "No response from Colab.")
-            return render_template("chatbot.html", prompt=user_input, response=colab_response)
+            return render_template("chatbot.html", prompt=user_input, response=colab_response, username=username)
         except Exception as e:
-            return render_template("chatbot.html", error=f"Error: {str(e)}")
+            return render_template("chatbot.html", error=f"Error: {str(e)}", username=username)
 
             
 @app.route('/video_feed')
@@ -183,10 +187,19 @@ def index():
 
                     res_string = highest_image_detection[0:1].upper() + highest_image_detection[1:]
                     form_status = 'hide'
+                    session['qr_status'] = "Yes"
 
                     return render_template('detection.html', res_string=res_string, form_status=form_status)
             else:
                 print(f"Error: Received status code {response.status_code}")
+
+@app.route('/qrcode')  
+def qr_view():
+    if 'qr_status' not in session:
+        return redirect('/')
+
+    session.pop('qr_status', None)
+    return render_template('qrcode.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -308,13 +321,11 @@ def logout():
     if 'username' not in session:
         return redirect('/login')
     else:
-        session.clear()
+        session.pop('username')
         return redirect('/login')
 
 @app.route('/dashboard')
 def dashboard():
-    if 'username' not in session:
-        return redirect('/')
     if 'username' not in session:
         return redirect('/login')
 
